@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+<style>
+div{width:200px; height:400px;}
+</style>
+</head>
+<body>
+<div id="div2">
+
+</div>
+<script type="text/javascript">
+//方法一js：通过dom获取元素
+    // wordLimit1 = (wordlimit,idname) =>{
+    //     let ele = document.getElementById(idname);
+    //     let str = ele.innerHTML.length;
+    //     if(str > wordlimit){
+    //         let txt = ele.innerText;
+    //         txt = txt.substr(0,wordlimit);
+    //         ele.innerText = txt + '...';
+    //         return;
+    //     }
+    // }
+//方法二：不通过dom获取元素，直接操作控制显示元素字符;个人认为此方法更加实用；
+    wordLimit = (wordlimit,txtcont) =>{
+        let str = txtcont.length;
+        // console.log(str);
+        if(str > wordlimit){
+            txtcont = txtcont.substr(0,wordlimit) + '...';
+            // console.log(txtcont);
+            return txtcont;
+        }else{
+            // console.log(txtcont);
+            return txtcont;
+        }
+    }
+    // wordLimit(20,'点点点。目标问题，看看有多长，点点。目标问题，看看有多长，');
+    var div2 = document.getElementById('div2');
+    div2.innerHTML = wordLimit(20,'设置超出20个字符，显示省略号，所以20个字符以后的都不显示了');
+</script>
+</body>
+</html>
