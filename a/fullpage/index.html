@@ -24,7 +24,15 @@
         <div class="section">3</div>
         <div class="section">4</div>
     </div>
+    <!--添加fastclick.js 为了解决在移动端快速连续点击两次 上移/下移几个像素的问题-->
+    <script src="fastclick.js"></script>
     <script>
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+
         //滑动区域
         var slideDom = document.getElementById('box');
         //每一页 看做每个模块
