@@ -52,3 +52,7 @@
   background-color: #393;
   border-color: rgba(0, 0, 0, 0.25);
 }
+/* line 44, ../sass/style.scss */
+.wrap .pagelist .notes {
+  font-size: 12px;
+}
