@@ -10,18 +10,19 @@
 </head>
 <body>
     <div class="wrap">
-        <ul class="pagelist">
+        <ul id="list" class="pagelist">
             <li>
-                <h1>
+                <h1 class="list-name">
                     <a href="javascript:;" title="移动端效果">移动端效果</a>
                 </h1>
                 <dl class="sub-dl">
                     <dd><a href="a/fullpage/index.html" target="_blank">满屏翻页-单组<span class="notes">(请切换到F12模式浏览)</span></a></dd>
                     <dd><a href="a/2/index.html" target="_blank">满屏翻页-多组</a></dd>
+					<dd><a href="a/tab/index.html" target="_blank">tab切换</a></dd>
                 </dl>
             </li>
             <li>
-                <h1>
+                <h1 class="list-name">
                     <a href="javascript:;">内容展示常用代码</a>
                 </h1>
                 <dl class="sub-dl">
@@ -29,11 +30,41 @@
                 </dl>
             </li>
             <li>
-                <h1>
+                <h1 class="list-name">
                     <a href="javascript:;">图片相关效果</a>
                 </h1>
+                <dl class="sub-dl">
+                    <dd><a href="b/wordlimit/index.html">超出规定字符显示省略号</a></dd>
+                </dl>
             </li>
         </ul>
     </div>
+    <script>
+    window.onload = function(){
+        var list = document.getElementById('list');
+        console.log(list);
+        var listName = document.getElementsByClassName('list-name');
+        var subDl = document.getElementsByClassName('sub-dl');
+        console.log(subDl);
+        var tmp = -1;
+        var open = false;
+        for(var i=0,length = listName.length; i<length; i ++ ){
+            listName[i].index = i;
+            listName[i].onclick = function(){
+                for(var j=0; j<listName.length; j++){
+                    subDl[j].style.display = 'none';
+                }
+                if(tmp == this.index && open){
+                    subDl[this.index].style.display = 'none';
+                    open = false;
+                }else{
+                    subDl[this.index].style.display = 'block';
+                    open = true;
+                }
+                tmp = this.index;
+            }
+        }
+    }
+    </script>
 </body>
 </html>

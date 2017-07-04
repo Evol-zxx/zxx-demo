@@ -56,3 +56,7 @@
 .wrap .pagelist .notes {
   font-size: 12px;
 }
+/* line 47, ../sass/style.scss */
+.wrap .pagelist .sub-dl {
+  display: none;
+}

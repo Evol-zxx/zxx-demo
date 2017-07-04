@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    body{
+        background: #f5f5f5;
+        font: normal 12px/1.5 "Helvetica Neue","Hiragino Sans GB","Segoe UI","Microsoft Yahei","微软雅黑",Tahoma,Arial,STHeiti,sans-serif;
+        color: #333;
+    }
+    ul,li{
+        list-style: none;
+    }
+    .head-nav{
+        height:40px;
+    }
+    .head-nav ul{
+        display:-webkit-box;
+        display:-ms-flexbox;
+        display:flex;
+        
+    }                                                                                                                                          
+    .head-nav li{
+        background: #5168c9;
+        text-align: center;
+        font-size: 16px;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        width: 0%;
+    }
+    .head-nav li a{
+        display: block;
+        padding: 15px 0;
+        border: none;
+        color: #fff;
+        text-decoration: none;
+    }
+    .head-nav li.active a{
+        border-bottom: 2px solid #abb8fd;
+    }
+    .m-block{
+        float:left;
+        font-size:40px;
+        color:#333;
+        text-align: center;
+        line-height: 100px;
+    }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="head-nav">
+            <ul>
+                <li data-id="0" class="active"><a href="javascript:;">支出</a></li>
+                <li data-id="1"><a href="javascript:;">收入</a></li>
+                <li data-id="2"><a href="javascript:;">代办</a></li>
+            </ul>
+        </div>
+        <div class="contains" style="width:100%; overflow:hidden;">
+            <div class="scroll-wrap">
+                <div class="m-block">1</div>
+                <div class="m-block">2</div>
+                <div class="m-block">3</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.staticfile.org/hammer.js/2.0.8/hammer.js"></script>
+    <script>
+        tabCarousel('.head-nav','.scroll-wrap');
+
+        function tabCarousel(tabHead,tabBody){
+    var tabBody = J_$(tabBody);
+    var tabHead = J_$(tabHead);
+    console.log(tabHead);
+    var tabHammer = new Hammer(tabHead);
+    console.log(tabHammer);
+    var len = tabBody.querySelectorAll(".m-block").length;
+
+    tabBody.style.width = len *100 + "%";
+    Array.prototype.slice.call(tabBody.querySelectorAll(".m-block"),0).map(function(value,index){
+        value.style.width = 100/len + "%";
+    });
+
+    tabHammer.on("tap",function(e) {
+        
+		var currentindex = e.target.parentElement.dataset.id;
+        console.log(currentindex.id);
+		Array.prototype.slice.call(tabHead.querySelectorAll("li"),0).map(function(value,index) {
+			tabHead.querySelectorAll("li")[index].className = "";
+			tabHead.querySelectorAll("li")[currentindex].className = "active";
+		});
+
+		tabBody.style.transform = "perspective(800px) translateX("+(-100/len*currentindex+'%')+")";
+		tabBody.style.webkitTransform = "perspective(800px) translate("+(-100/len*currentindex+'%')+")";
+
+	});
+}
+
+//获取样式  长度大于1的为class   长度为1的为ID
+function J_$(str){
+    return document.querySelectorAll(str).length > 1 ? document.querySelectorAll(str) : document.querySelectorAll(str)[0];
+}
+
+        
+    </script>
+</body>
+</html>
