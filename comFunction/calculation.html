@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>12.5 * 2.14</div>
+<div>mul(12.5,2.14)</div>
+</body>
+<script>
+let a=12.5,b=2.14;
+//a * b 即：
+let c = mul(a,b)
+/**
+* 在开发发票项目时，设计开票金额计算的问题，暴露出了js 浮点计算的bug
+* 设计到小数存在的计算时 如不做特殊处理 必然会触发次bug
+* 封装了如下函数，此后在设计计算时调用此方法处理
+**/
+//加法计算--主要针对js浮点计算bug
+function add(a,b){
+        var c, d, e;
+        try {
+            c = a.toString().split(".")[1].length;
+        } catch (f) {
+            c = 0;
+        }
+        try {
+            d = b.toString().split(".")[1].length;
+        } catch (f) {
+            d = 0;
+        }
+        return e = Math.pow(10, Math.max(c, d)), (this.mul(a, e) + this.mul(b, e)) / e;
+      }
+//乘法计算   
+function mul(a,b){
+        var c = 0,
+            d = a.toString(),
+            e = b.toString();
+        try {
+            c += d.split(".")[1].length;
+        } catch (f) {}
+        try {
+            c += e.split(".")[1].length;
+        } catch (f) {}
+        return Number(d.replace(".", "")) * Number(e.replace(".", "")) / Math.pow(10, c);
+    }
+</script>
+</html>

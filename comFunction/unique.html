@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>去重之前数组:</div>
+<div>aaa,bbb,aaa,ccc,ccc</div>
+
+<div style="margin-top:30px">去重之后数组:</div>
+<div id="arrNew"></div>
+</body>
+<script type="text/javascript">
+let arr = ['aaa','bbb','aaa','ccc','ccc']
+let arrNew = unique(arr)
+let div = document.getElementById('arrNew')
+div.innerHTML = arrNew
+
+//数组去重
+function unique(arr){
+    var ret = []
+    for (var i = 0; i < arr.length; i++) {
+        var item = arr[i]
+        if (ret.indexOf(item) === -1) {
+        ret.push(item)
+        }
+    }
+    return ret
+}
+</script>
+</html>

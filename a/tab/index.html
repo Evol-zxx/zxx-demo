@@ -79,40 +79,40 @@
     </div>
     <script src="https://cdn.staticfile.org/hammer.js/2.0.8/hammer.js"></script>
     <script>
-        tabCarousel('.head-nav','.scroll-wrap');
+    tabCarousel('.head-nav','.scroll-wrap');
 
-        function tabCarousel(tabHead,tabBody){
-    var tabBody = J_$(tabBody);
-    var tabHead = J_$(tabHead);
-    console.log(tabHead);
-    var tabHammer = new Hammer(tabHead);
-    console.log(tabHammer);
-    var len = tabBody.querySelectorAll(".m-block").length;
+    function tabCarousel(tabHead,tabBody){
+        var tabBody = J_$(tabBody);
+        var tabHead = J_$(tabHead);
+        console.log(tabHead);
+        var tabHammer = new Hammer(tabHead);
+        console.log(tabHammer);
+        var len = tabBody.querySelectorAll(".m-block").length;
 
-    tabBody.style.width = len *100 + "%";
-    Array.prototype.slice.call(tabBody.querySelectorAll(".m-block"),0).map(function(value,index){
-        value.style.width = 100/len + "%";
-    });
+        tabBody.style.width = len *100 + "%";
+        Array.prototype.slice.call(tabBody.querySelectorAll(".m-block"),0).map(function(value,index){
+            value.style.width = 100/len + "%";
+        });
 
-    tabHammer.on("tap",function(e) {
-        
-		var currentindex = e.target.parentElement.dataset.id;
-        console.log(currentindex.id);
-		Array.prototype.slice.call(tabHead.querySelectorAll("li"),0).map(function(value,index) {
-			tabHead.querySelectorAll("li")[index].className = "";
-			tabHead.querySelectorAll("li")[currentindex].className = "active";
-		});
+        tabHammer.on("tap",function(e) {
+            
+            var currentindex = e.target.parentElement.dataset.id;
+            console.log(currentindex.id);
+            Array.prototype.slice.call(tabHead.querySelectorAll("li"),0).map(function(value,index) {
+                tabHead.querySelectorAll("li")[index].className = "";
+                tabHead.querySelectorAll("li")[currentindex].className = "active";
+            });
 
-		tabBody.style.transform = "perspective(800px) translateX("+(-100/len*currentindex+'%')+")";
-		tabBody.style.webkitTransform = "perspective(800px) translate("+(-100/len*currentindex+'%')+")";
+            tabBody.style.transform = "perspective(800px) translateX("+(-100/len*currentindex+'%')+")";
+            tabBody.style.webkitTransform = "perspective(800px) translate("+(-100/len*currentindex+'%')+")";
 
-	});
-}
+        });
+    }
 
-//获取样式  长度大于1的为class   长度为1的为ID
-function J_$(str){
-    return document.querySelectorAll(str).length > 1 ? document.querySelectorAll(str) : document.querySelectorAll(str)[0];
-}
+    //获取样式  长度大于1的为class   长度为1的为ID
+    function J_$(str){
+        return document.querySelectorAll(str).length > 1 ? document.querySelectorAll(str) : document.querySelectorAll(str)[0];
+    }
 
         
     </script>
